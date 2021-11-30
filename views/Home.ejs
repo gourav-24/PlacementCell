@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Home</title>
+    <!-- Bootstrap style sheet for home button in header -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- material icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <!-- css file for header and home page -->
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+
+    <!-- Jquery files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <!-- nity for notifications -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+  </head>
+  <body>
+    <header><%- include('_header')%></header>
+    <!-- Notfications, following is only used to send response errors or success to helper js file -->
+
+    <% if(flash.success && flash.success.length>0 ){ %>
+
+    <div id="Snotification" style="display: none"><%= flash.success %></div>
+
+    <% } %> <% if(flash.error && flash.error.length>0 ){ %>
+
+    <div id="errorNotification" style="display: none"><%= flash.error %></div>
+
+    <% } %>
+
+    <!-- home page -->
+    <div class="home">
+      <div class="home-body">
+        <!-- Batch form -->
+        <div id="batchFormArea" class="formArea">
+          <h4>Batch Form</h4>
+
+          <div class="button" id="batchFormBttn">Batch Form</div>
+          <form id="batchForm" action="/create-batch" method="POST">
+            <label for="name">Batch Name:</label> &nbsp;
+            <input id="name" type="text" name="batchName" required /> <br />
+
+            <input type="submit" id="submit" />
+          </form>
+
+          <div>
+            <!-- List of Batch -->
+            <h4>List of Batch</h4>
+            <div class="data-list">
+              <% for(val of batchData ){ %>
+              <div>
+                <span><%= val.batchName %></span>
+                <span class="batch-delete"> - </span>
+              </div>
+
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Todays Interviews -->
+        <div class="formArea">
+          <h4>Todays Interviews</h4>
+          <% for(let val of todayInterviewList ){ %>
+          <div>
+            <span>
+              <a href="/interviews/detail/?id=<%= val._id %>">
+                <%= val.company %>
+              </a>
+            </span>
+            <span> <%= val.interviewDate %></span>
+            <span> <%= val.StudentList.length %> students applied</span>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <!-- helper js file -->
+    <script src="/js/home.js"></script>
+  </body>
+</html>

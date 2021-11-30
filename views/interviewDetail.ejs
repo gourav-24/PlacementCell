@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <title>Interview Detail</title>
+    <!-- Bootstrap link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Material icons link -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/interviewDetail.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header><%- include('_header'); %></header>
+    <div class="page-body">
+      <div class="form-list">
+        <!-- Company details -->
+        <div class="interview-detail">
+          
+          <span> Comapany: <%= interviewData.company %></span> <br />
+          <span> Interview Date: <%= interviewData.interviewDate %></span><br />
+        </div>
+
+        <!-- Add student button -->
+        <div id="InterviewFormBttn" class="button">Add Student</div>
+
+        <!-- Add student form -->
+        <div>
+          <form id="InterviewForm" action="" method="post">
+            <label for="in-student"> Student </label>
+
+            <select name="student" id="in-student" required>
+              <option value="">--None--</option>
+              <% if( studentData && studentData.length!==0 ){ %>
+                 <% for(val of studentData){ %>
+              <option value=<%= val._id %> > 
+                <%= val.firstName %>&nbsp;<%= val.lastName %>&nbsp; <%= val.email %>
+              </option>
+                <% } %> 
+              <% } %>
+            </select>
+            <br />
+            <input
+              name="id"
+              type="text"
+              value="<%= interviewData._id %>"
+              hidden
+            />
+
+            <button id="submit-interview" type="submit">Add</button>
+          </form>
+        </div>
+
+        <!-- List of students up for interview -->
+
+        <div id="interview-List">
+          <h1>List of Students</h1>          
+            <% if(interviewData.StudentList){ %> 
+
+              <% if(resultData){ %>
+              <table border="1">
+                <thead>
+                  <th>Sr. No</th>
+                  <th>Student</th>
+                  <th>Result</th>
+                  <th>remove Student</th>
+                </thead>
+                <tbody>
+                  <% var index = 0 %> 
+                  <% for(let val of resultData){ %> 
+                    <% index++ %>
+                  <tr>
+                    <td><%= index %></td>
+    
+                    <td>
+                      <span>
+                        <%= val.student.firstName %>&nbsp; <%= val.student.lastName %>
+                      </span>
+                    </td>
+                    <td>
+                      <div>
+                        <span class="result"> <%= val.result %> </span>
+                        <span class="result-input">
+                          <select name="result" id="resultPicklist" >
+                            <% if(resultPicklistData){ %>
+                              <% for(let val of resultPicklistData){ %>
+                                <option value=<%= val %> > <%= val %></option>
+                            <% } %>
+                            <% } %>
+                          </select> 
+                          
+                        </span>
+                      </div>
+                      
+                    </td>
+                    <td class="delete">
+                      <span class="remove" interviewId=<%= interviewData._id %> resultId=<%= val._id %> >
+                        Remove
+                          
+                      </span>
+                        <span class="updateBttn" resultId=<%= val._id %>  > 
+                          update
+                      </span>
+                      
+                    </td>
+                    
+                    
+                      
+                      
+                    
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <% } %>
+              <% } %>
+    
+
+          
+        </div>
+      </div>
+    </div>
+    <script src="/js/interviewDetail.js"></script>
+    
+
+  </body>
+</html>

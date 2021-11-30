@@ -1,0 +1,65 @@
+.page-body {
+    padding-top: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .form-list{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+  
+  }
+  .button {
+    height: 50px;
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+  .button:hover {
+    color: white;
+    background-color: cornflowerblue;
+    cursor: pointer;
+  }
+  
+  #interview-List {
+    text-align: center;
+    margin: 10px;
+  }
+  th{
+      margin: 5px;
+      padding:10px;
+      text-align: center;
+  }
+  td{
+      margin: 5px;
+      padding:10px;
+      text-align: center;
+  }
+  .delete{
+      cursor: pointer;
+      color: black;
+  }
+  .delete:hover{
+    color: white;
+    background-color: #fc0339;
+    cursor: pointer;
+  }
+  .update{
+    cursor: pointer;
+    color: black;
+}
+.update:hover{
+  color: white;
+  background-color: greenyellow;
+  cursor: pointer;
+}
+  a{
+      text-decoration: none;
+      color: black;
+  }
+  

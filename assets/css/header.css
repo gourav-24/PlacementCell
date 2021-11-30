@@ -1,0 +1,31 @@
+header {
+  margin-top: 0px;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  border-bottom: 1px solid lightgray;
+  box-shadow: 1px 0px 8px 2px grey;
+  background-color: white;
+}
+header div {
+  width: auto;
+  height: auto;
+  transition: 0.3s ease-in-out;
+}
+header div a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  margin: 15px;
+}
+header div:hover {
+  transform: scale(1.5);
+  text-decoration: none;
+}
+header div:hover a {
+  text-decoration: none;
+}

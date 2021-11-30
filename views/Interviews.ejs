@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Interviews</title>
+    <!-- Bootstrap link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Material icons link -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Jquery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    
+    <!-- style sheets -->
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/interviews.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header><%- include('_header')%></header>
+
+    <div class="page-body">
+      <!-- Interview form -->
+      <div class="form-list">
+        <div id="InterviewFormBttn" class="button">Interview Form</div>
+        <div>
+          <form id="InterviewForm" action="" method="post">
+
+            <label for="in-company"> Company </label>&nbsp;
+            <input name="company" id="in-company" type="text" required /><br />
+
+            <label for="in-date">Interview Date </label>
+            <input name="interviewDate" id="in-date" type="date" required/><br />
+
+            <button id="submit-interview" type="submit">Submit</button>
+          </form>
+        </div>
+
+        <!-- list of interviews -->
+        <div id="interview-List">
+          <h1>List of Interviews</h1>
+          <table border="1">
+            <thead>
+              <th>Sr. No</th>
+              <th>Comapany Name</th>
+              <th>Interview Date</th>
+              <th>Delete Interview</th>
+            </thead>
+            <tbody>
+              
+              <% var index = 0 %>
+            <% for(val of interviewData){ %>
+              <% index++ %>
+              <tr>
+                <td><%= index %></td>
+                <td>
+                  <span> <a href="/interviews/detail/?id=<%= val._id %>"> <%= val.company %> </a></span>
+                </td>
+                <td>
+                  <span style="max-width:50px;"> <%= val.interviewDate %> </span>
+                </td>
+                <td class="delete">
+                  <a href="delete/?id=<%= val._id %>" > Delete</a>
+                </td>
+              </tr>
+            <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <!-- button to download csv data -->
+    <div class="csvBttn button">
+      Download CSV
+    </div>
+
+    <!-- Helper Scripts -->
+    <script src="/js/interview.js"></script>
+    <script src="/js/generateCSV.js"></script>
+  </body>
+</html>

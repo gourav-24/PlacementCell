@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Sign In</title>
+    <!-- JQuery script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <!-- Noty style sheet and script -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+  </head>
+  <body>
+    <!-- hidden flash messages so that helper script can pick notifications -->
+    <% if(flash.success && flash.success.length>0 ){ %>
+
+    <div id="Snotification" style="display: none"><%= flash.success %></div>
+
+    <% } %> <% if(flash.error && flash.error.length>0 ){ %>
+
+    <div id="errorNotification" style="display: none"><%= flash.error %></div>
+
+    <% } %>
+
+    <!-- sign-in form -->
+    <form id="myform" action="/users/createSesssion" method="POST">
+      <label for="in-email"> Email </label>&nbsp;
+      <input name="email" id="in-email" type="email" required /><br />
+
+      <label for="in-password"> Password </label>&nbsp;
+      <input name="password" id="input-email" type="password" required /><br />
+      <button id="submit-button" type="submit">Submit</button>
+    </form>
+    <!-- helper script -->
+    <script src="/js/signin.js"></script>
+  </body>
+
+  <!-- link for signup page -->
+  <div>
+    <a href="/users/signup"> Sign Up </a>
+  </div>
+</html>

@@ -1,0 +1,213 @@
+<html>
+  <head>
+    <title>Students</title>
+    <!-- bootstarp link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Material icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <!-- JQuery script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+
+    <!-- style sheets -->
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/students.css" />
+    
+    <!-- stylesheet and script for notifications -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+    
+  </head>
+  <body>
+    <!-- header -->
+    <header><%- include('_header')%></header>
+    <div class="page-body">
+      <div class="form-list">
+        <!-- Student form button and form -->
+        <div id="studentFormBttn" class="button">Student Form</div>
+        <div >
+          <form id="studentForm" action="" method="post">
+            <label for="in-first-name"> First Name </label> &nbsp;
+            <input name="firstName" id="in-first-name" type="text" /> <br />
+  
+            <label for="in-last-name"> Last Name </label>&nbsp;
+            <input name="lastName" id="in-last-name" type="text" required /><br />
+  
+            <label for="in-email"> Email </label>&nbsp;
+            <input name="email" id="in-email" type="email" required /><br />
+  
+            <label for="in-College"> College </label>&nbsp;
+            <input name="college" id="in-College" type="text" required /><br />
+  
+            <label for="in-status"> Status </label>&nbsp;
+            <select name="status" id="in-status" required>
+              <option value="Placed">Placed</option>
+              <option value="Not Placed">Not Placed</option>
+            </select>
+            <label for="in-batch"> Batch </label>&nbsp;
+            <select name="batch" id="in-batch" required>
+              <% for(val of batchData){ %>
+              <option value=<%= val._id %>> <%= val.batchName %></option>
+              <% } %>
+            </select>
+            <br />
+  
+            <label for="in-WebDscore"> WebD Final Score </label>&nbsp;
+            <input
+              name="WebDscore"
+              id="in-WebDscore"
+              type="number"
+              required
+            /><br />
+  
+            <label for="in-DSAscore"> DSA Final Score </label>&nbsp;
+            <input
+              name="DSAscore"
+              id="in-DSAscore"
+              type="number"
+              required
+            /><br />
+  
+            <label for="in-ReactScore"> React Final Score </label>&nbsp;
+            <input
+              name="ReactScore"
+              id="in-ReactScore"
+              type="number"
+              required
+            /><br />
+  
+            <button id="submit-student" type="submit">Submit</button>
+          </form>
+
+        </div>
+
+        <!-- student table -->
+        
+        <div id="student-List">
+          <h1>List of students</h1>
+          <table border="1">
+            <thead>
+              <th>Sr. No</th>
+              <th>
+                First Name
+
+              </th>
+              <th>
+                Last Name
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                College
+              </th>
+              <th>
+                Status
+              </th>
+              
+              <th>
+                Batch Name
+              </th>
+              <th>
+                WebD Final Score
+              </th>
+              <th>
+                DSA Final Score
+              </th>
+              <th>
+                React Final Score
+              </th>
+              <th>
+                Edit Student
+              </th>
+              <th>
+                Delete Student
+              </th>
+            </thead>
+            <tbody>
+              <% var index = 0 %>
+            <% for(let val of studentData){ %>
+              <% index++ %>
+              <tr studentId=<%= val._id %>>
+                <td  ><%= index %></td>
+                <td >
+                  <span class="rowData" colName="firstName"> <%= val.firstName %> </span>
+                </td>
+                <td  >
+                  <span class="rowData" colName="lastName" > <%= val.lastName %> </span>
+                </td>
+                <td >
+                  <span class="rowData" colName="email" > <%= val.email %> </span>
+                </td>
+                <td >
+                  <span class="rowData"  colName="college" > <%= val.college %> </span>
+                </td>
+                <td >
+                  <span class="rowData status" colName="status"  > <%= val.status %> </span>
+                  <span class="statusInput"  >
+                    <select name="status" class="statusIn" >
+                      <option value="Placed">Placed</option>
+                      <option value="Not Placed">Not Placed</option>
+                    </select>
+                  </span>
+                </td>
+                <td colName="batchName" >
+                  <span  class="rowData batch" colName="batch"  batchName =<%= val.batch.batchName %> > <%= val.batch.batchName %> </span>
+                  <span class="batchInput"> 
+                    <select name="batch" class="batchIn" >
+                    <% for(let opt of batchData){ %>
+                    <option value=<%= opt._id %>> <%= opt.batchName %></option>
+                    <% } %>
+                  </select>
+                </span>
+                </td>
+                <td  >
+                  <span class="rowData" colName="WebDscore" > <%= val.WebDscore %> </span>
+                </td>
+                <td  >
+                  <span class="rowData" colName="DSAscore" > <%= val.DSAscore %> </span>
+                </td>
+                <td  >
+                  <span class="rowData" colName="ReactScore"> <%= val.ReactScore %> </span>
+                </td>
+                <td class="update button" >
+                  <span class="updateBttn" studentId=<%= val._id %>>
+                    Update
+                  </span>
+                  <span class="editBttn">
+                    Edit
+                  </span>
+                  
+                </td>
+                <td class="delete">
+                  <span class="deleteBttn">
+                    <a href="delete/?id=<%= val._id %>" > Delete</a>
+                  </span>
+                  <span class="cancelBttn">
+                    Cancel edit
+                  </span>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- helper script -->
+    <script src="/js/student.js"></script>
+  </body>
+</html>

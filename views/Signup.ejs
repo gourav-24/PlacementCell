@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>SignUp</title>
+    <!-- Jquery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    
+    <!-- stylesheet and script for notifications -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+  </head>
+  <body>
+    <!-- Sign up form -->
+    <form id="myform" action="/users/create" method="post">
+      <label for="in-first-name"> First Name </label> &nbsp;
+      <input name="firstName" id="in-first-name" type="text" /> <br />
+
+      <label for="in-last-name"> Last Name </label>&nbsp;
+      <input name="lastName" id="in-last-name" type="text" required /><br />
+
+      <label for="in-email"> Email </label>&nbsp;
+      <input name="email" id="in-email" type="email" required /><br />
+
+      <label for="in-password"> Password </label>&nbsp;
+      <input name="password" id="input-email" type="password" required /><br />
+
+      <label for="in-con-password"> Confirm Password </label>&nbsp;
+      <input
+        name="confirmPass"
+        id="in-con-password"
+        type="password"
+        required
+      /><br />
+
+      <button id="submit-button" type="submit">Submit</button>
+    </form>
+    <!-- signi in page link -->
+    <div>
+      <a href="/users/signin"> Sign In </a>
+    </div>
+    <!-- helper script -->
+    <script src="/js/signup.js"></script>
+  </body>
+</html>

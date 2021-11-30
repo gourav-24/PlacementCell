@@ -1,0 +1,68 @@
+#courseForm {
+  cursor: pointer;
+}
+#batchForm {
+  cursor: pointer;
+}
+
+.home {
+  width: 100%vw;
+  height: 100%vh;
+  padding-top: 150px;
+  display: flow;
+  justify-content: center;
+  align-items: center;
+}
+.home-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  height: 50pxpx;
+  width: 150px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.button:hover {
+  color: white;
+  background-color: cornflowerblue;
+  cursor: pointer;
+}
+
+.formArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  min-height: 60%;
+  border: 1px solid black;
+  margin: 30px;
+}
+
+.formArea div {
+  margin: 20px;
+}
+
+.data-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-list span{
+  font-size: 20px;
+  padding: 10px;
+
+}
+
+.batch-delete{
+  padding-left: 20px;
+  cursor: pointer;
+}
