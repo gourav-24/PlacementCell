@@ -32,13 +32,10 @@ module.exports.home = async function (req, res, next) {
 // creates a new batch
 module.exports.createBatch = async function (req, res, next) {
   try {
-    if (req.body.batchName || req.body.batchName.trim() === "") {
+    if (!req.body.batchName || req.body.batchName.trim() === "") {
       req.flash("error", "Batch name can't be empty");
-      let batchList = await Batch.find({});
-      customMWare.setFlash(req, res, next);
-      return res.render("Home", {
-        batchData: batchList,
-      });
+      
+      return res.redirect("/");
     }
 
     let batch = await Batch.findOne({ batchName: req.body.batchName });
@@ -51,6 +48,9 @@ module.exports.createBatch = async function (req, res, next) {
         }
         console.log(batch);
       });
+      req.flash("success", "Batch created Successfully");
+    }else{
+      req.flash("error", `${req.body.batchName} already exist`);
     }
     return res.redirect("/");
   } catch (err) {
